@@ -123,6 +123,7 @@
 The next step in this app's evolutions is to allow users the simple ability to text "events" and event types, and then receive a small portion of events that they may be interested in. This will require either a data scraper or utilizing an events API. Other potential implementations of this app would be to return a list of the top restaurants in Nashville. To do this we will need API credentials for an event API that allows us to select certain event types, such as the Eventful API. Ideally, the event API's response will be returned in a JSON format. Additionally, a common set of events will need to be chosen.If the addition of the events feature works well in the app, a food feature will be implemented that returns the wait time of highly rated food restaurants near you, and potentially the available reservations times available of certain restaurants.
 
 # Development Approach
+<<<<<<< HEAD
   First and foremost, events API need to be researched. The API will need to provide clear and easily parseable data for relevant/currents
 events in Nashville.  Next, a set of events will need to be chosen and be placed into an event's map based on interviewees responses to the survey questions. Next, an events API will be chosen that allows us to select events by type. Next, the required API credentials need to be obtained. Then API calls can be generated that return a list of events and will be parsed to return relevant information about a select group of events.
 
@@ -132,3 +133,12 @@ result of the API will have to be verified by trial and error at first based on 
 
 
   If time, allows a similar process will be used to retrieve restaurant information from a restaurant centric API.
+=======
+  First and foremost, events API need to be researched. The API will need to provide clear and easily parseable data for relevant/currents events in Nashville.  Next, a set of events will need to be chosen and be placed into an event's map based on interviewees responses to the survey questions. Next, an events API will be chosen that allows us to select events by type. Next, the required API credentials need to be obtained. Then API calls can be generated that return a list of events and will be parsed to return relevant information about a select group of events.
+  
+  
+Utilizing an event's API rather than scraping data, will provide a more consistent and reliable source for event data. Unfortunately, the
+result of the API will have to be verified by trial and error at first based on what events are happening in Nashville.
+   
+If time, allows a similar process will be used to retrieve restaurant information from a restaurant centric API.
+>>>>>>> 2b67a3169e101837c3e0599689f2ba9b07d82840
