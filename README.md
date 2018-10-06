@@ -7,7 +7,6 @@
 
    As of right now, this app will allow users to register as an expert on a topic. These experts will be allowed to respond questions sent by users that pertain to the topic in which they are experts. However, a survey was conducted to understand potential enhancements for users. The survey conducted with potential users tried to understand how they feel about extracurricular events and places going on in Nashville. Based on information gleaned from the surveyees, potential next steps to this app include -  a response that would send out links to events in the city/ around campus, easing the process of reservation/waiting times by sending out open reservations time and or wait times of restaurants, and linking calendars with friends.
 
-
 # Questions
   1. What do you enjoy doing for fun?
   2. Are you a member of any social groups (i.e Greek life, church, running clubs, etc.), and if so, what groups?
@@ -126,6 +125,10 @@ The next step in this app's evolutions is to allow users the simple ability to t
 # Development Approach
   First and foremost, events API need to be researched. The API will need to provide clear and easily parseable data for relevant/currents
 events in Nashville.  Next, a set of events will need to be chosen and be placed into an event's map based on interviewees responses to the survey questions. Next, an events API will be chosen that allows us to select events by type. Next, the required API credentials need to be obtained. Then API calls can be generated that return a list of events and will be parsed to return relevant information about a select group of events.
+
+
   Utilizing an event's API rather than scraping data, will provide a more consistent and reliable source for event data. Unfortunately, the
 result of the API will have to be verified by trial and error at first based on what events are happening in Nashville.
+
+
   If time, allows a similar process will be used to retrieve restaurant information from a restaurant centric API.
