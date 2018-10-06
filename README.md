@@ -127,7 +127,7 @@ The next step in this app's evolutions is to allow users the simple ability to t
 events in Nashville.  Next, a set of events will need to be chosen and be placed into an event's map based on interviewees responses to the survey questions. Next, an events API will be chosen that allows us to select events by type. Next, the required API credentials need to be obtained. Then API calls can be generated that return a list of events and will be parsed to return relevant information about a select group of events.
 
 
-  Utilizing an event's API rather than scraping data, will provide a more consistent and reliable source for event data. Unfortunately, the
+Utilizing an event's API rather than scraping data, will provide a more consistent and reliable source for event data. Unfortunately, the
 result of the API will have to be verified by trial and error at first based on what events are happening in Nashville.
 
 
