@@ -5,6 +5,8 @@
   
    The foundation of this app involves a router with different functions, a text message sent from a user, and state of the conversations and "experts"(people who answer questions). The text message will be parsed into a command and its arguments. Next, the current state of the app will be retrieved. Then the command will be routed in the router to a route, if the command exists in the router, with the arguments used as the function's parameters. Lastly, all the actions invoked by the commands and arguments will be sent.  For example, a text from a user “ask where is food” would first create the router, parse the text message into a command “ask” and arguments “where is food”, then find the “ask” function and use arguments as parameters, perform the function and send out/perform the appropriate actions.
 
+   As of right now, this app will allow users to register as an expert on a topic. These experts will be allowed to respond questions sent by users that pertain to the topic in which they are experts. However, a survey was conducted to understand potential enhancements for users. The survey conducted with potential users tried to understand how they feel about extracurricular events and places going on in Nashville. Based on information gleaned from the surveyees, potential next steps to this app include -  a response that would send out links to events in the city/ around campus, easing the process of reservation/waiting times by sending out open reservations time and or wait times of restaurants, and linking calendars with friends.
+
 
 # Questions
   1. What do you enjoy doing for fun?
