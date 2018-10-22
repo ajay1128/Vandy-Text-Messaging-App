@@ -1,12 +1,8 @@
 (ns asgnx.core
   ;(:require-macros [cljs.core.async.macros :refer [go]])
   (:require [clojure.string :as string]
-
-            ;[cljs-http.client :as http]
-            ;[]cljs.core.async :refer [<!]
-
             [cognitect.transit :as t]
-            ;[asgnx.http :as http]
+            [asgnx.http :as http]
             [clojure.core.async :as async :refer [go chan <! >!]]
             [asgnx.kvstore :as kvstore
              :refer [put! get! list! remove!]]))
@@ -17,6 +13,12 @@
 ;; A def for the course home page URL.
 (def cs4278-brightspace "https://brightspace.vanderbilt.edu/d2l/home/85892")
 
+(defn my-handler [response]
+    (let [body   (:body response)
+           status (:status response)]
+        (if (= 200 status)
+          (println "got: " body
+             (println "error: " response)))))
 
 ;; Do not edit!
 ;; A map specifying the instructor's office hours that is keyed by day of the week.
@@ -491,11 +493,12 @@
 ;;prints the events categories
 ;(defn print-events[]  (string/join "\n" events))
 
-(defn get-eventsAPI [] "http://example.com")
+;(defn get-eventsAPI [] "")
 
 
-
-(defn get-events [] "http://example.com")
+;;
+;;returns a list of events that may interest the user
+(defn get-events [args]) ;(str "http://nashville.eventful.com/events?q="  "&sort_order=Popularity&t="))
 
 ;; Don't edit!
 (defn stateless [f]

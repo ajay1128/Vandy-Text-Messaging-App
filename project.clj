@@ -3,14 +3,18 @@
             :url "http://magnum.io"
             :license {:name "Eclipse Public License"
                       :url "http://www.eclipse.org/legal/epl-v10.html"}
-            :dependencies [[io.nervous/kvlt "0.1.4"]
-                           [org.clojure/clojure "1.9.0"]
+            :dependencies [[org.clojure/clojure "1.9.0"]
                            [org.clojure/clojurescript "1.10.339"
                             :scope "provided"]
                            [thheller/shadow-cljs "2.4.33"]
                            [cljsjs/aws-sdk-js "2.94.0-0"]
                            [com.cognitect/transit-cljs "0.8.256"]
                            [clj-http "3.9.1"]
+                           [io.nervous/kvlt "0.1.4"
+                            :exclusions [org.clojure/tools.reader
+                                         org.clojure/clojurescript
+                                         org.clojure/clojure
+                                         org.clojure/core.async]]
                            [io.nervous/cljs-lambda "0.3.5"
                             :exclusions [org.clojure/tools.reader
                                          org.clojure/clojurescript
