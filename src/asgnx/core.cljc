@@ -1,8 +1,5 @@
 (ns asgnx.core
-  ;(:require-macros [cljs.core.async.macros :refer [go]])
   (:require [clojure.string :as string]
-            [cognitect.transit :as t]
-            [asgnx.http :as http]
             [clojure.core.async :as async :refer [go chan <! >!]]
             [asgnx.kvstore :as kvstore
              :refer [put! get! list! remove!]]))
@@ -13,12 +10,6 @@
 ;; A def for the course home page URL.
 (def cs4278-brightspace "https://brightspace.vanderbilt.edu/d2l/home/85892")
 
-(defn my-handler [response]
-    (let [body   (:body response)
-           status (:status response)]
-        (if (= 200 status)
-          (println "got: " body
-             (println "error: " response)))))
 
 ;; Do not edit!
 ;; A map specifying the instructor's office hours that is keyed by day of the week.
@@ -30,7 +21,7 @@
                                    :end      10
                                    :location "the chairs outside of the Wondry"}})
 
-(def defaultCity "Nashville")
+(def defaultCity "nashville")
 
 
 
@@ -481,24 +472,83 @@
 
 
 
-; ;;type of events that a user can get information from
-; (def events
-;   (sorted-set "conference" "comedy" "learning_education" "family_fun_kids"
-;             "family_fun_kids" "movies_film" "food" "fundraisers" "art" "support"
-;             "holiday" "books" "attractions" "community" "business" "nightlife"
-;             "clubs_associations" "outdoors_recreation" "performing_arts"
-;             "animals" "politics_activism" "sales" "science" "religion_spirituality"
-;             "technology" "sports" "music"))
+;;type of events that a user can get information from
+(def events{"conference" "conference"
+            "comedy" "comedy"
+            "learning" "learning_education"
+            "education" "learning_education"
+            "family" "family_fun_kids"
+            "kids"   "family_fun_kids"
+            "movies" "movies_film"
+            "film"   "movie_film"
+            "food"   "food"
+            "fundraisers" "fundraisers"
+            "volunteering"   "fundraisers"
+            "art"         "art"
+            "support"     "support"
+            "festival"    "festivals_parades"
+            "holiday" "holiday"
+            "books" "books"
+            "attractions" "attractions"
+            "community" "community"
+            "business" "buisness"
+            "nightlife" "nightlife"
+            "clubs" "clubs_associations"
+            "outdoors" "outdoors_recreation"
+            "perfoming arts""performing_arts"
+            "animals" "animals"
+            "politics" "politics_activism"
+            "sales" "sales"
+            "science" "science "
+            "religion" "religion_spirituality"
+            "tech" "technology"
+            "technology" "technology"
+            "sports" "sports"
+            "music" "music"
+            "concerts" "music"
+            "concert" "music"})
 
-;;prints the events categories
-;(defn print-events[]  (string/join "\n" events))
+;;valid time stamps for events
+(def times {"today" "today"
+            "tonight" "today"
+            "weekend" "this-weekend"
+            "week" "this-week"
+            "month" "this-month"})
 
-;(defn get-eventsAPI [] "")
 
+
+;prints the events categories
+(defn print-events[]  (string/join "\n" (keys events)))
 
 ;;
-;;returns a list of events that may interest the user
-(defn get-events [args]) ;(str "http://nashville.eventful.com/events?q="  "&sort_order=Popularity&t="))
+;; returns a web page of list of events that may interest the user
+;;
+;; accepts 1 parameter
+;; 1 a parsed message with the format:
+;;    {:cmd "expert"
+;;     :user-id "+15555555555"
+;;     :args [event-type date]
+;;
+;; event type- any releavant one-word event for the user
+;; date options: today,tonight, week, weekend, month
+;;
+;;
+;; "events music today"
+;;
+;; The parsed message would be:
+;;
+;; {:cmd "events"
+;;  :user-id "+15555555555"))
+;;  :args ["music" "today"]}
+;;
+(defn get-events [{:keys [args]}] (if (empty? args) "please list event-type and time")
+                         (if (not (contains? times (last args))) "please list valid time (today,tonight, weekend,week, or month)"
+                           (str "https://" defaultCity ".eventful.com/events/categories/"
+                              (get events (first args)) "/"
+                              (get times  (last args)))))
+
+
+
 
 ;; Don't edit!
 (defn stateless [f]
@@ -509,20 +559,12 @@
 (def routes {"default"  (stateless (fn [& args] "Unknown command."))
              "expert"   add-expert
              "ask"      ask-experts
-             ;"categories" (stateless print-events)
+             "categories" (stateless print-events)
              "answer"   answer-question
              "events"   (stateless get-events)
              "welcome"  (stateless welcome)
              "homepage" (stateless homepage)
              "office"   (stateless office-hours)})
-
-;; Asgn 3.
-;;
-;; @Todo: Add mappings of the cmds "expert", "ask", and "answer" to
-;; to the `routes` map so that the functions that you
-;; created will be invoked when the corresponding text message
-;; commands are received.
-;;})
 
 
 ;; Don't edit!
